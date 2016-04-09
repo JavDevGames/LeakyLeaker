@@ -1,7 +1,11 @@
 package game.ui.com 
 {
+	import flash.display.BitmapData;
 	import game.ui.LeakObject;
+	import starling.display.Image;
+	import starling.display.Sprite;
 	import starling.text.TextField;
+	import starling.textures.Texture;
 	import utils.GlobalData;
 	/**
 	 * ...
@@ -9,6 +13,7 @@ package game.ui.com
 	 */
 	public class TotalLeaks extends LeakObject
 	{
+		private var mBg:Sprite;
 		private var mTotalLeaks:Number;
 		private var mLeaksText:TextField;
 		private var mDirty:Boolean;
@@ -23,10 +28,22 @@ package game.ui.com
 		
 		private function Init():void
 		{
-			mLeaksText = new TextField(379, 35, mTotalLeaks + " total leaks");
+			var bmp:BitmapData = new BitmapData(16, 16, true, 0x99000000);
+			var bgTex:Texture = Texture.fromBitmapData(bmp);
+			
+			var bgImage:Image = new Image(bgTex);
+			bgImage.width = 386;
+			bgImage.height = 80;
+			mBg = new Sprite();
+			mBg.y = 58;
+			addChild(mBg);
+			
+			mLeaksText = new TextField(379, 35, mTotalLeaks + " total leaks", "verdana", 25, 0xffffff);
 			mLeaksText.x = 7;
-			mLeaksText.y = 64;
-			addChild(mLeaksText);
+			mLeaksText.y = 8;
+			
+			mBg.addChild(bgImage);
+			mBg.addChild(mLeaksText);
 		}
 		
 		public function UpdateLeaks(newLeaks:Number):void

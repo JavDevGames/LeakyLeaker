@@ -129,16 +129,16 @@ package game.ui.com
 				throw new Error("Worker type not found: " + pType);
 			}
 			
-			mTitle = new TextField(280, 22, cur.pName);
+			mTitle = new TextField(280, 22, cur.pName, "Verdana", 12, 0xffffff);
 			mTitle.hAlign = HAlign.LEFT;
 			mTitle.x = 45;
 			mTitle.y = 3;
 			
-			mCost = new TextField(90, 12, cur.pCost + "", "Verdana", 8);
+			mCost = new TextField(90, 12, cur.pCost + "", "Verdana", 8, 0xffffff);
 			mCost.hAlign = HAlign.LEFT;
 			mCost.y = mTitle.height;
 			
-			mOwnCount = new TextField(150, 33, cur.pOwned + "", "Verdana", 25);
+			mOwnCount = new TextField(150, 33, cur.pOwned + "", "Verdana", 25, 0xffffff);
 			mOwnCount.hAlign = HAlign.LEFT;
 			mOwnCount.x = 160;
 			mOwnCount.y = 4;

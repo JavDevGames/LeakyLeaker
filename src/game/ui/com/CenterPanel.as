@@ -2,24 +2,26 @@ package game.ui.com
 {
 	import flash.display.Bitmap;
 	import game.ui.LeakObject;
+	import starling.display.Image;
+	import starling.textures.Texture;
 	/**
 	 * ...
 	 * @author Javier
 	 */
 	public class CenterPanel extends LeakObject
 	{
-		
-		
 		private var mTotalPurchases:int;
 		private var mPurchases:Vector.<WorkerHolder>;
 		private var mPendingUpdates:Number;
 		private var mUpdateLeaks:Function;
+		private var mBg:Image;
 		
 		public function CenterPanel() 
 		{
 			mTotalPurchases = 0;
 			mPendingUpdates = 0;
 			mPurchases = new Vector.<WorkerHolder>;
+			Init();
 		}
 		
 		private function Init():void

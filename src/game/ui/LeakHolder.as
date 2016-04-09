@@ -4,6 +4,7 @@ package game.ui
 	import game.ui.com.CenterPanel;
 	import game.ui.com.Clicker;
 	import game.ui.effects.HackNumberSpawner;
+	import game.ui.effects.MatrixRain;
 	import game.ui.LeakObject;
 	import game.ui.com.ReleaseReport;
 	import game.ui.com.Store;
@@ -29,6 +30,7 @@ package game.ui
 		private var mTotalLeaks:TotalLeaks;
 		private var mReleaseReport:ReleaseReport;
 		private var mNumberSpawner:HackNumberSpawner;
+		private var mMatrixRain:MatrixRain;
 		
 		public function LeakHolder() 
 		{
@@ -61,7 +63,9 @@ package game.ui
 		private function InitEffects():void
 		{
 			mNumberSpawner = new HackNumberSpawner();
+			mMatrixRain = new MatrixRain();
 			
+			mComponents.push(mMatrixRain);
 			mComponents.push(mNumberSpawner);
 		}
 		
