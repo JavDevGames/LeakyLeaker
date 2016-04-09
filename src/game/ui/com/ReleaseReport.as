@@ -98,7 +98,7 @@ package game.ui.com
 				var diff:Number = curVal - mCurLeakVal;
 				mLeakBar.Add(diff);
 				
-				//mCurLeakVal = curVal;
+				mCurLeakVal = curVal;
 			}
 		}
 		
