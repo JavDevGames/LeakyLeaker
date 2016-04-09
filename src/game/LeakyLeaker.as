@@ -51,6 +51,7 @@ package game
 			mStarling.nextFrame();
 			
 			//update the scene
+			mLeakHolder.Update(delta);
 		}
 		
 	}

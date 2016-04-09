@@ -39,7 +39,7 @@
     <path-element>C:\Projects\NGJ16\LeakyLeaker\src\Preloader.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
-  <default-frame-rate>30</default-frame-rate>
+  <default-frame-rate>60</default-frame-rate>
   <default-size>
     <width>1280</width>
     <height>720</height>
