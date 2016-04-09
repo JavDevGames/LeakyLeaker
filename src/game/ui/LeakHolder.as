@@ -4,6 +4,7 @@ package game.ui
 	import game.ui.com.CenterPanel;
 	import game.ui.com.Clicker;
 	import game.ui.com.LeakObject;
+	import game.ui.com.ReleaseReport;
 	import game.ui.com.Store;
 	import game.ui.com.TotalLeaks;
 	import starling.display.Image;
@@ -24,6 +25,7 @@ package game.ui
 		private var mCenterPanel:CenterPanel;
 		private var mStore:Store;
 		private var mTotalLeaks:TotalLeaks;
+		private var mReleaseReport:ReleaseReport;
 		
 		public function LeakHolder() 
 		{
@@ -49,11 +51,13 @@ package game.ui
 			mCenterPanel = new CenterPanel();
 			mStore = new Store();
 			mTotalLeaks = new TotalLeaks();
+			mReleaseReport = new ReleaseReport();
 			
 			mComponents.push(mClicker);
 			mComponents.push(mCenterPanel);
 			mComponents.push(mStore);
 			mComponents.push(mTotalLeaks);
+			mComponents.push(mReleaseReport);
 			
 			for (i = 0; i < mComponents.length; ++i)
 			{
@@ -63,6 +67,7 @@ package game.ui
 			mClicker.RegisterClickCallback(HandleClickerClick);
 			mStore.RegisterPurchaseCallback(HandlePurchase);
 			mCenterPanel.RegisterUpdateCallback(HandleWorkerUpdate);
+			
 		}
 		
 		private function HandleWorkerUpdate(newLeaks:Number):void 
