@@ -9,6 +9,7 @@ package game.ui.com
 	import flash.system.ImageDecodingPolicy;
 	import game.definitions.LeakWorker;
 	import game.definitions.WorkerDefinitions;
+	import game.ui.LeakObject;
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.events.Event;

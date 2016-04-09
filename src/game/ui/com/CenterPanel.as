@@ -1,6 +1,7 @@
 package game.ui.com 
 {
 	import flash.display.Bitmap;
+	import game.ui.LeakObject;
 	/**
 	 * ...
 	 * @author Javier

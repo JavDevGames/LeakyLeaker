@@ -3,6 +3,7 @@ package game.ui.com
 	import flash.display.Bitmap;
 	import game.definitions.LeakWorker;
 	import game.definitions.WorkerDefinitions;
+	import game.ui.LeakObject;
 	import mx.utils.NameUtil;
 	import starling.display.Image;
 	import starling.textures.Texture;

@@ -3,6 +3,9 @@ package utils
 	import flash.display.Stage;
 	import starling.core.Starling;
 	import starling.events.Event;
+	import starling.text.BitmapFont;
+	import starling.text.TextField;
+	import starling.textures.Texture;
 	/**
 	 * ...
 	 * @author Javier
@@ -53,7 +56,12 @@ package utils
 		}
 		
 		
-		
+		public function RegisterFont(fontSheet:Class, fontXML:Class, name:String):void
+		{
+			var fontTexture:Texture = Texture.fromEmbeddedAsset(fontSheet);
+			var xml:XML = XML(new fontXML());
+			TextField.registerBitmapFont(new BitmapFont(fontTexture, xml), name);
+		}
 	}
 
 }

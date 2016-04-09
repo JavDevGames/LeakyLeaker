@@ -1,4 +1,4 @@
-package game.ui.com 
+package game.ui 
 {
 	import starling.display.Sprite;
 	/**

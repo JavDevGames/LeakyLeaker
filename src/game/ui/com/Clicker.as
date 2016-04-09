@@ -4,6 +4,7 @@ package game.ui.com
 	import flash.filters.GlowFilter;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import game.ui.LeakObject;
 	import starling.display.Button;
 	import starling.events.Event;
 	import starling.textures.Texture;

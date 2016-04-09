@@ -1,5 +1,6 @@
 package game.ui.com 
 {
+	import game.ui.LeakObject;
 	/**
 	 * ...
 	 * @author Javier

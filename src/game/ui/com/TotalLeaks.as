@@ -1,5 +1,6 @@
 package game.ui.com 
 {
+	import game.ui.LeakObject;
 	import starling.text.TextField;
 	import utils.GlobalData;
 	/**

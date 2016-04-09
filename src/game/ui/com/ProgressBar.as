@@ -2,6 +2,7 @@ package game.ui.com
 {
 	import flash.geom.Point;
 	import flash.system.ImageDecodingPolicy;
+	import game.ui.LeakObject;
 	import starling.display.Image;
 	import starling.textures.Texture;
 	/**

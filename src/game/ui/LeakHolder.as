@@ -3,7 +3,8 @@ package game.ui
 	import flash.display.Bitmap;
 	import game.ui.com.CenterPanel;
 	import game.ui.com.Clicker;
-	import game.ui.com.LeakObject;
+	import game.ui.effects.HackNumberSpawner;
+	import game.ui.LeakObject;
 	import game.ui.com.ReleaseReport;
 	import game.ui.com.Store;
 	import game.ui.com.TotalLeaks;
@@ -27,6 +28,7 @@ package game.ui
 		private var mStore:Store;
 		private var mTotalLeaks:TotalLeaks;
 		private var mReleaseReport:ReleaseReport;
+		private var mNumberSpawner:HackNumberSpawner;
 		
 		public function LeakHolder() 
 		{
@@ -41,10 +43,29 @@ package game.ui
 			
 			addChild(img);
 			
+			InitEffects();
+			InitUI();
 			InitComponents();
 		}
 		
-		private function InitComponents():void
+		private function InitComponents():void 
+		{
+			var i:int;
+			
+			for (i = 0; i < mComponents.length; ++i)
+			{
+				addChild(mComponents[i]);
+			}
+		}
+		
+		private function InitEffects():void
+		{
+			mNumberSpawner = new HackNumberSpawner();
+			
+			mComponents.push(mNumberSpawner);
+		}
+		
+		private function InitUI():void
 		{
 			var i:int;
 			
@@ -59,11 +80,6 @@ package game.ui
 			mComponents.push(mStore);
 			mComponents.push(mTotalLeaks);
 			mComponents.push(mReleaseReport);
-			
-			for (i = 0; i < mComponents.length; ++i)
-			{
-				addChild(mComponents[i]);
-			}
 			
 			mClicker.RegisterClickCallback(HandleClickerClick);
 			mStore.RegisterPurchaseCallback(HandlePurchase);

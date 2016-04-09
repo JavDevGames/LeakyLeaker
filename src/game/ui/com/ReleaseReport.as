@@ -2,6 +2,7 @@ package game.ui.com
 {
 	import flash.display.Bitmap;
 	import flash.system.ImageDecodingPolicy;
+	import game.ui.LeakObject;
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.events.Event;

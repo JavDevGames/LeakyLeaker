@@ -2,6 +2,7 @@ package game.ui.com
 {
 	import flash.display.Bitmap;
 	import flash.utils.Dictionary;
+	import game.ui.LeakObject;
 	import starling.display.Image;
 	import starling.textures.Texture;
 	/**
