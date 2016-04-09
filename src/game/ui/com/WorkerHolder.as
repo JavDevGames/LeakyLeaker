@@ -1,6 +1,8 @@
 package game.ui.com 
 {
 	import flash.display.Bitmap;
+	import game.definitions.LeakWorker;
+	import game.definitions.WorkerDefinitions;
 	import mx.utils.NameUtil;
 	import starling.display.Image;
 	import starling.textures.Texture;
@@ -43,7 +45,9 @@ package game.ui.com
 			pType = type;
 			mTotalWorkers = totalWorkers;
 			mUpdateFunc = updateFunc;
-			mProductionRate = 1;
+			
+			var definition:LeakWorker = WorkerDefinitions.GetInstance().GetFromType(type);
+			mProductionRate = definition.pOutput;
 			
 			var bmp:Bitmap;
 			
@@ -115,7 +119,7 @@ package game.ui.com
 		
 		override public function Update(deltaTime:Number):void
 		{
-			var newAmount:Number = mProductionRate * mTotalWorkers;
+			var newAmount:Number = ((mProductionRate/1000) * deltaTime) * mTotalWorkers;
 			mUpdateFunc(newAmount);
 		}
 	}

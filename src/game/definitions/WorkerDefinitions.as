@@ -1,5 +1,6 @@
 package game.definitions 
 {
+	import flash.display.GraphicsGradientFill;
 	/**
 	 * ...
 	 * @author Javier
@@ -31,6 +32,21 @@ package game.definitions
 			pWorkerDefs.push(new LeakWorker(4, "EC2 Instance", 11000, 0, 1));
 			pWorkerDefs.push(new LeakWorker(5, "Blackhat", 110000, 0, 1));
 			pWorkerDefs.push(new LeakWorker(6, "NSA", 1100000, 0, 1));
+		}
+		
+		public function GetFromType(type:int):LeakWorker
+		{
+			var i:int;
+			
+			for (i = 0; i < pWorkerDefs.length; ++i)
+			{
+				if (pWorkerDefs[i].pType == type)
+				{
+					return pWorkerDefs[i];
+				}
+			}
+			
+			return null;
 		}
 		
 	}

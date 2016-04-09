@@ -1,6 +1,7 @@
 package game.ui.com 
 {
 	import starling.text.TextField;
+	import utils.GlobalData;
 	/**
 	 * ...
 	 * @author Javier
@@ -35,6 +36,8 @@ package game.ui.com
 			}
 			
 			mTotalLeaks += newLeaks;
+			mTotalLeaks = (mTotalLeaks < 0) ? 0 : mTotalLeaks;
+			
 			mDirty = true;
 		}
 		
@@ -43,8 +46,10 @@ package game.ui.com
 		{
 			if (mDirty)
 			{
-				mLeaksText.text = mTotalLeaks + " total leaks";
+				mLeaksText.text = int(mTotalLeaks) + " total leaks";
 				mDirty = false;
+				
+				GlobalData.GetInstance().pPlayerProfile.pTotalLeaks = mTotalLeaks;
 			}
 			
 		}

@@ -11,6 +11,7 @@ package utils
 	{
 		private static var mInstance:GlobalData;
 		private var mCreationCallback:Function;
+		public var pPlayerProfile:PlayerProfile;
 		
 		public var pStage:Stage;
 		
@@ -19,9 +20,15 @@ package utils
 			if (!mInstance)
 			{
 				mInstance = new GlobalData();
+				mInstance.Init();
 			}
 			
 			return mInstance;
+		}
+		
+		private function Init():void		
+		{
+			pPlayerProfile = new PlayerProfile();
 		}
 		
 		public function PostInit(starling:Starling, creationCallback:Function):void

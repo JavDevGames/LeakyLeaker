@@ -43,9 +43,19 @@ package game.ui.com
 			mPurchaseCallback = func;
 		}
 		
-		private function PurchaseClick(type:int):void 
+		private function PurchaseClick(type:int, cost:Number):void 
 		{
-			mPurchaseCallback(type);
+			mPurchaseCallback(type, cost);
+		}
+		
+		override public function Update(deltaTime:Number):void 
+		{
+			var i:int;
+			
+			for (i = 0; i < mList.length; ++i)
+			{
+				mList[i].Update(deltaTime);
+			}
 		}
 	}
 

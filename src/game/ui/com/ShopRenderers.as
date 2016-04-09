@@ -1,6 +1,7 @@
 package game.ui.com 
 {
 	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.events.DataEvent;
 	import flash.filters.GlowFilter;
 	import flash.geom.Point;
@@ -15,6 +16,8 @@ package game.ui.com
 	import starling.textures.Texture;
 	import starling.utils.HAlign;
 	import starling.utils.VAlign;
+	import utils.GlobalData;
+	import utils.PlayerProfile;
 	/**
 	 * ...
 	 * @author Javier
@@ -57,6 +60,8 @@ package game.ui.com
 		private var mBgTexDown:Texture;
 		
 		private var mClickCallback:Function;
+		private var mPlayerProfile:PlayerProfile;
+		private var mBlocker:Image;
 		  
 		public function ShopRenderers() 
 		{
@@ -148,11 +153,18 @@ package game.ui.com
 			mBgButton.addEventListener(Event.TRIGGERED, HandlePurchase);
 			
 			mDefinitionClone = cur.Clone();
+			mPlayerProfile = GlobalData.GetInstance().pPlayerProfile;
+			
+			var bmpData:BitmapData = new BitmapData(mBgButton.width, mBgButton.height, true, 0x99000000);
+			var blockerTex:Texture = Texture.fromBitmapData(bmpData);
+			
+			mBlocker = new Image(blockerTex);
+			addChild(mBlocker);
 		}
 		
 		private function HandlePurchase(e:Event):void 
 		{
-			mClickCallback(pType);
+			mClickCallback(pType, mDefinitionClone.pCost);
 			
 			mDefinitionClone.pOwned += 1; //amount?
 			mDefinitionClone.pCost = Math.round(mDefinitionClone.pCost * 1.15);
@@ -163,6 +175,14 @@ package game.ui.com
 		{
 			mOwnCount.text = mDefinitionClone.pOwned + "";
 			mCost.text = mDefinitionClone.pCost + "";
+		}
+		
+		override public function Update(deltaTime:Number):void
+		{
+			var enabled:Boolean = !(mPlayerProfile.pTotalLeaks >= mDefinitionClone.pCost);
+			
+			mBlocker.visible = enabled;
+			
 		}
 	}
 

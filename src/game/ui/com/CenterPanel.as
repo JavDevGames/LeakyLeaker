@@ -17,6 +17,7 @@ package game.ui.com
 		public function CenterPanel() 
 		{
 			mTotalPurchases = 0;
+			mPendingUpdates = 0;
 			mPurchases = new Vector.<WorkerHolder>;
 		}
 		
@@ -25,7 +26,7 @@ package game.ui.com
 			
 		}
 		
-		public function AddPurchase(type:int):void
+		public function AddPurchase(type:int, cost:Number):void
 		{
 			var i:int;
 			
@@ -42,21 +43,25 @@ package game.ui.com
 			if (purchase)
 			{
 				purchase.AddWorkers(1);
-				return;
+			}
+			else
+			{			
+				var newHolder:WorkerHolder = new WorkerHolder(type, 1, HandleUpdate);
+				mPurchases.push(newHolder);
+				
+				var posX:Number = 392
+				var posY:Number = 66+(mTotalPurchases * 108);
+				
+				newHolder.x = posX;
+				newHolder.y = posY;
+				
+				addChild(newHolder);
+				
+				mTotalPurchases++;
 			}
 			
-			var newHolder:WorkerHolder = new WorkerHolder(type, 1, HandleUpdate);
-			mPurchases.push(newHolder);
-			
-			var posX:Number = 392
-			var posY:Number = 66+(mTotalPurchases * 108);
-			
-			newHolder.x = posX;
-			newHolder.y = posY;
-			
-			addChild(newHolder);
-			
-			mTotalPurchases++;
+			//update the leaks left
+			mUpdateLeaks(-cost);
 		}
 		
 		private function HandleUpdate(newLeaks:Number):void 

@@ -10,15 +10,16 @@ package game.definitions
 		public var pName:String;
 		public var pCost:Number;
 		public var pOwned:Number;
+		public var pOutput:Number;
 		public var pFreeUnits:int;
 		
-		public function LeakWorker(type:int, name:String, cost:Number, owned:Number, freeUnits:Number) 
+		public function LeakWorker(type:int, name:String, cost:Number, owned:Number, output:Number) 
 		{
 			pType = type;
 			pName = name;
 			pCost = cost;
 			pOwned = owned;
-			pFreeUnits = freeUnits;
+			pOutput = output;
 		}
 		
 		public function Clone():LeakWorker

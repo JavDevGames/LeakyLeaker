@@ -70,9 +70,9 @@ package game.ui
 			mTotalLeaks.UpdateLeaks(newLeaks);
 		}
 		
-		private function HandlePurchase(type:int):void
+		private function HandlePurchase(type:int, cost:Number):void
 		{
-			mCenterPanel.AddPurchase(type);
+			mCenterPanel.AddPurchase(type, cost);
 		}
 		
 		private function HandleClickerClick(newLeaks:int):void 
