@@ -12,6 +12,7 @@ package utils
 		private static var mInstance:GlobalData;
 		private var mCreationCallback:Function;
 		public var pPlayerProfile:PlayerProfile;
+		public var pPopUpManager:PopUpManager;
 		
 		public var pStage:Stage;
 		
@@ -29,6 +30,7 @@ package utils
 		private function Init():void		
 		{
 			pPlayerProfile = new PlayerProfile();
+			pPopUpManager = new PopUpManager();
 		}
 		
 		public function PostInit(starling:Starling, creationCallback:Function):void

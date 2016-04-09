@@ -29,6 +29,8 @@ package game.ui.com
 			addChild(mBack);
 			addChild(mProgress);
 			addChild(mFront);
+			
+			Add(mCurValue);
 		}
 		
 		public function Add(val:Number):void

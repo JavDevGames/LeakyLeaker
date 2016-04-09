@@ -7,6 +7,7 @@ package game.ui.com
 	import starling.events.Event;
 	import starling.textures.Texture;
 	import utils.GlobalData;
+	import utils.PopUpManager;
 	/**
 	 * ...
 	 * @author Javier
@@ -83,6 +84,9 @@ package game.ui.com
 			mCurReportMax = Math.round(mCurReportMax * 1.10);
 			mCurLeakVal = 0;
 			mLeakBar.UpdateBounds(mCurReportMax, 0);
+			
+			//and trigger a release!
+			GlobalData.GetInstance().pPopUpManager.AddPopUp(ReleasePopUp, { title:"TEST TITLE", body:"TEST BODY" } );
 		}
 		
 		override public function Update(deltaTime:Number):void
@@ -94,7 +98,7 @@ package game.ui.com
 				var diff:Number = curVal - mCurLeakVal;
 				mLeakBar.Add(diff);
 				
-				mCurLeakVal = curVal;
+				//mCurLeakVal = curVal;
 			}
 		}
 		

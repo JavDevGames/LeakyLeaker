@@ -10,6 +10,7 @@ package game.ui
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.textures.Texture;
+	import utils.GlobalData;
 	/**
 	 * ...
 	 * @author Javier
@@ -68,6 +69,7 @@ package game.ui
 			mStore.RegisterPurchaseCallback(HandlePurchase);
 			mCenterPanel.RegisterUpdateCallback(HandleWorkerUpdate);
 			
+			GlobalData.GetInstance().pPopUpManager.SetLeakHolder(this);
 		}
 		
 		private function HandleWorkerUpdate(newLeaks:Number):void 
