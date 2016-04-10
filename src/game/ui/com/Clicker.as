@@ -30,11 +30,11 @@ package game.ui.com
 			var bmp:Bitmap = new mButtonAsset();
 			var upTex:Texture = Texture.fromBitmapData(bmp.bitmapData);
 			
-			var effect:GlowFilter = new GlowFilter(0xff0000, 1, 6, 6, 8, 1, true);
+			var effect:GlowFilter = new GlowFilter(0xa0a0a0, 1, 6, 6, 8, 1, true);
 			bmp.bitmapData.applyFilter(bmp.bitmapData, new Rectangle(0,0, bmp.bitmapData.width, bmp.bitmapData.height), new Point(0,0), effect);
 			var downTex:Texture = Texture.fromBitmapData(bmp.bitmapData);
 			
-			mButton = new Button(upTex, "", downTex);
+			mButton = new Button(upTex, "");
 			mButton.x = 115;
 			mButton.y = 188;
 			addChild(mButton);

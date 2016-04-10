@@ -1,6 +1,7 @@
 package utils 
 {
 	import flash.display.Stage;
+	import game.definitions.Releases;
 	import starling.core.Starling;
 	import starling.events.Event;
 	import starling.text.BitmapFont;
@@ -34,6 +35,7 @@ package utils
 		{
 			pPlayerProfile = new PlayerProfile();
 			pPopUpManager = new PopUpManager();
+			Releases.Init();
 		}
 		
 		public function PostInit(starling:Starling, creationCallback:Function):void

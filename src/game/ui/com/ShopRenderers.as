@@ -109,7 +109,7 @@ package game.ui.com
 			
 			mIcon = new Image(tex);
 			mIcon.x = 5;
-			mIcon.y = 5;
+			mIcon.y = 15;
 			
 			var i:int;
 			
@@ -129,19 +129,19 @@ package game.ui.com
 				throw new Error("Worker type not found: " + pType);
 			}
 			
-			mTitle = new TextField(280, 22, cur.pName, "Verdana", 12, 0xffffff);
+			mTitle = new TextField(280, 22, cur.pName, "Verdana", 12, 0, true);
 			mTitle.hAlign = HAlign.LEFT;
 			mTitle.x = 45;
 			mTitle.y = 3;
 			
-			mCost = new TextField(90, 12, cur.pCost + "", "Verdana", 8, 0xffffff);
+			mCost = new TextField(90, 12, cur.pCost + "", "Verdana", 8, 0);
 			mCost.hAlign = HAlign.LEFT;
 			mCost.y = mTitle.height;
 			
-			mOwnCount = new TextField(150, 33, cur.pOwned + "", "Verdana", 25, 0xffffff);
+			mOwnCount = new TextField(150, 33, cur.pOwned + "", "Verdana", 20, 0);
 			mOwnCount.hAlign = HAlign.LEFT;
 			mOwnCount.x = 160;
-			mOwnCount.y = 4;
+			mOwnCount.y = 8;
 			
 			mBgButton = new Button(mBgTexUp, "", mBgTexDown);
 			addChild(mBgButton);

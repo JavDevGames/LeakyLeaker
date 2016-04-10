@@ -45,16 +45,17 @@ package game.ui.com
 			var upTex:Texture = Texture.fromBitmapData(bmp.bitmapData);
 			mCloseButton = new Button(upTex, "Close");
 			
-			mLeakTitle = new TextField(300, 80, params.title, "Verdana", 25);
+			mLeakTitle = new TextField(800, 80, params.title, "Verdana", 25, 0, true);
 			mLeakBody = new TextField(300, 120, params.body, "Verdana", 20);
 			
 			mLeakTitle.x = mBackground.width / 2 - mLeakTitle.width / 2;
+			mLeakTitle.y = 45;
 			
 			mLeakBody.x = mBackground.width / 2 - mLeakBody.width / 2;
 			mLeakBody.y = mLeakTitle.y + mLeakTitle.height + 10;
 			
 			mCloseButton.x = mBackground.width / 2 - mCloseButton.width / 2;
-			mCloseButton.y = mLeakBody.y + mLeakBody.height + 10;
+			mCloseButton.y = mLeakBody.y + mLeakBody.height + 60;
 			
 			addChild(mBackground);
 			

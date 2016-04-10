@@ -106,15 +106,43 @@ package game.ui.com
 			{
 				curWorker = new VisualLeakWorker(pType);
 				
-				posX = 20 + (mWorkers.length * 20);
-				posY = 30 + int(mWorkers.length % 2) * 20;
+				var cardinality:int = int(mWorkers.length % 2);
+				
+				if (pType == 1)
+				{
+					posX = 110 + (mWorkers.length * 25);
+					posY = 30 + cardinality * 20;	
+				}
+				else
+				{
+					posX = 20 + (mWorkers.length * 20);
+					posY = 30 + cardinality * 20;	
+				}
 				
 				mWorkers.push(curWorker);
 				
 				curWorker.x = posX;
 				curWorker.y = posY;
 				
-				addChild(curWorker);
+				//don't show more than 32
+				var max:int = 32;
+				
+				if (pType == 1)
+				{
+					max = 21;
+				}
+				
+				if (mWorkers.length < max)
+				{
+					if (!cardinality)
+					{
+						addChildAt(curWorker,1);
+					}
+					else
+					{				
+						addChild(curWorker);
+					}
+				}
 			}
 		}
 		

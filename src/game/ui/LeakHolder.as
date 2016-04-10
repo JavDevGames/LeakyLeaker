@@ -19,9 +19,6 @@ package game.ui
 	 */
 	public class LeakHolder extends Sprite
 	{
-		[Embed(source = "../../../assets/game_layout.png")]
-		private var debug_layout:Class;
-		
 		private var mComponents:Vector.<LeakObject>;
 		
 		private var mClicker:Clicker;
@@ -39,12 +36,6 @@ package game.ui
 		
 		public function Init():void
 		{
-			var bmp:Bitmap = new debug_layout();
-			var tex:Texture = Texture.fromBitmapData(bmp.bitmapData);
-			var img:Image = new Image(tex);
-			
-			addChild(img);
-			
 			InitEffects();
 			InitUI();
 			InitComponents();
@@ -88,8 +79,14 @@ package game.ui
 			mClicker.RegisterClickCallback(HandleClickerClick);
 			mStore.RegisterPurchaseCallback(HandlePurchase);
 			mCenterPanel.RegisterUpdateCallback(HandleWorkerUpdate);
+			mReleaseReport.RegisterReportCallback(HandleReportRelease);
 			
 			GlobalData.GetInstance().pPopUpManager.SetLeakHolder(this);
+		}
+		
+		private function HandleReportRelease(reportCost:Number):void		
+		{
+			mTotalLeaks.UpdateLeaks(reportCost);
 		}
 		
 		private function HandleWorkerUpdate(newLeaks:Number):void 

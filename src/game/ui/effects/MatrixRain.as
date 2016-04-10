@@ -24,7 +24,7 @@ package game.ui.effects
 			mRainBg = new Image(rainBgTex);
 			mRainBg.width = 386;
 			mRainBg.height = 720;
-			addChild(mRainBg);
+			//addChild(mRainBg);
 			
 			mRainTiles = new Vector.<MatrixRainTile>(36);
 			Init();

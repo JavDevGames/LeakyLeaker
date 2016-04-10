@@ -28,10 +28,10 @@ package game.definitions
 			pWorkerDefs = new Vector.<LeakWorker>();
 			pWorkerDefs.push(new LeakWorker(1, "Google Searches", 15, 0, 0.1));
 			pWorkerDefs.push(new LeakWorker(2, "Script Kiddie", 110, 0, 0.5));
-			pWorkerDefs.push(new LeakWorker(3, "Programmer", 1100, 0, 1));
-			pWorkerDefs.push(new LeakWorker(4, "EC2 Instance", 11000, 0, 1));
-			pWorkerDefs.push(new LeakWorker(5, "Blackhat", 110000, 0, 1));
-			pWorkerDefs.push(new LeakWorker(6, "NSA", 1100000, 0, 1));
+			pWorkerDefs.push(new LeakWorker(3, "Programmer", 1100, 0, 10));
+			pWorkerDefs.push(new LeakWorker(4, "EC2 Instance", 11000, 0, 100));
+			pWorkerDefs.push(new LeakWorker(5, "Blackhat", 110000, 0, 1000));
+			pWorkerDefs.push(new LeakWorker(6, "NSA", 1100000, 0, 10000));
 		}
 		
 		public function GetFromType(type:int):LeakWorker

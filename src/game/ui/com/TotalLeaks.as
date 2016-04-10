@@ -38,7 +38,7 @@ package game.ui.com
 			mBg.y = 58;
 			addChild(mBg);
 			
-			mLeaksText = new TextField(379, 35, mTotalLeaks + " total leaks", "verdana", 25, 0xffffff);
+			mLeaksText = new TextField(380, 35, mTotalLeaks + " total bytes hacked", "verdana", 22, 0xffffff);
 			mLeaksText.x = 7;
 			mLeaksText.y = 8;
 			
@@ -64,7 +64,7 @@ package game.ui.com
 		{
 			if (mDirty)
 			{
-				mLeaksText.text = int(mTotalLeaks) + " total leaks";
+				mLeaksText.text = int(mTotalLeaks) + " total bytes hacked";
 				mDirty = false;
 				
 				GlobalData.GetInstance().pPlayerProfile.pTotalLeaks = mTotalLeaks;

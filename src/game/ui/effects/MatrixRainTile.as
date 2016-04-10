@@ -15,7 +15,7 @@ package game.ui.effects
 	 */
 	public class MatrixRainTile extends LeakObject 
 	{
-		[Embed(source = "../../../../assets/matrix_rain.png")]
+		[Embed(source = "../../../../assets/matrix_rain.jpg")]
 		private static var matrix_rain:Class;
 		
 		private var mTileImage:Image;

@@ -2,6 +2,7 @@ package game.ui.com
 {
 	import flash.display.Bitmap;
 	import flash.system.ImageDecodingPolicy;
+	import game.definitions.Releases;
 	import game.ui.LeakObject;
 	import starling.display.Button;
 	import starling.display.Image;
@@ -39,10 +40,14 @@ package game.ui.com
 		private var mCurReportMax:Number;
 		private var mCurLeakVal:Number;
 		
+		private var mReleaseIdx:int;
+		private var mReportCallback:Function;
+		
 		public function ReleaseReport() 
 		{
 			mCurReportMax = 1000;
 			mCurLeakVal = 0;
+			mReleaseIdx = 0;
 			Init();
 		}
 		
@@ -82,17 +87,32 @@ package game.ui.com
 		
 		private function ReleaseClicked(e:Event):void 
 		{
-			mCurReportMax = Math.round(mCurReportMax * 1.10);
+			mReportCallback(-mCurReportMax);
+			
+			trace("cost: " + mCurReportMax);
+			
+			mCurReportMax = Math.round(Math.pow(mCurReportMax, 1.15));
 			mCurLeakVal = 0;
 			mLeakBar.UpdateBounds(mCurReportMax, 0);
 			
 			//and trigger a release!
-			GlobalData.GetInstance().pPopUpManager.AddPopUp(ReleasePopUp, { title:"TEST TITLE", body:"TEST BODY" } );
+			var modIdx:int = mReleaseIdx % Releases.pRumorList.length;
+			var messageTitle:String = Releases.pRumorList[modIdx][0];
+			var messageBody:String = Releases.pRumorList[modIdx][1];
+			
+			messageBody += "\n(http://bit.ly/25SgIU2)";
+			
+			mReleaseIdx++;
+			
+			GlobalData.GetInstance().pPopUpManager.AddPopUp(ReleasePopUp, { title:messageTitle, body:messageBody} );
 		}
 		
 		override public function Update(deltaTime:Number):void
 		{
 			var curVal:Number = GlobalData.GetInstance().pPlayerProfile.pTotalLeaks;
+			
+			//disable/enable it
+			mReleaseButton.enabled = curVal >= mCurReportMax;
 			
 			if (curVal != mCurLeakVal)
 			{
@@ -101,6 +121,11 @@ package game.ui.com
 				
 				mCurLeakVal = curVal;
 			}
+		}
+		
+		public function RegisterReportCallback(reportCallback:Function):void 
+		{
+			mReportCallback = reportCallback;
 		}
 		
 	}
