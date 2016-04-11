@@ -1,8 +1,10 @@
 package game.ui 
 {
 	import flash.display.Bitmap;
+	import flash.geom.Point;
 	import game.ui.com.CenterPanel;
 	import game.ui.com.Clicker;
+	import game.ui.com.NoticeArrow;
 	import game.ui.effects.HackNumberSpawner;
 	import game.ui.effects.MatrixRain;
 	import game.ui.LeakObject;
@@ -28,6 +30,7 @@ package game.ui
 		private var mReleaseReport:ReleaseReport;
 		private var mNumberSpawner:HackNumberSpawner;
 		private var mMatrixRain:MatrixRain;
+		private var mArrow:NoticeArrow;
 		
 		public function LeakHolder() 
 		{
@@ -69,19 +72,32 @@ package game.ui
 			mStore = new Store();
 			mTotalLeaks = new TotalLeaks();
 			mReleaseReport = new ReleaseReport();
+			mArrow = new NoticeArrow();
+			
 			
 			mComponents.push(mClicker);
 			mComponents.push(mCenterPanel);
 			mComponents.push(mStore);
 			mComponents.push(mTotalLeaks);
 			mComponents.push(mReleaseReport);
+			mComponents.push(mArrow);
 			
-			mClicker.RegisterClickCallback(HandleClickerClick);
-			mStore.RegisterPurchaseCallback(HandlePurchase);
+			mClicker.RegisterClickCallback(HandleClickerClick, SetArrowAnimation, EndArrowAnimation);
+			mStore.RegisterCallbacks(HandlePurchase, SetArrowAnimation, EndArrowAnimation);
 			mCenterPanel.RegisterUpdateCallback(HandleWorkerUpdate);
-			mReleaseReport.RegisterReportCallback(HandleReportRelease);
+			mReleaseReport.RegisterCallbacks(HandleReportRelease, SetArrowAnimation, EndArrowAnimation);
 			
 			GlobalData.GetInstance().pPopUpManager.SetLeakHolder(this);
+		}
+		
+		public function SetArrowAnimation(startX:Number, startY:Number, endX:Number, endY:Number):void
+		{
+			mArrow.BeginAnimation(startX, startY, endX, endY);
+		}
+		
+		public function EndArrowAnimation():void
+		{
+			mArrow.EndAnimation();
 		}
 		
 		private function HandleReportRelease(reportCost:Number):void		

@@ -63,6 +63,8 @@ package game.ui.com
 		private var mClickCallback:Function;
 		private var mPlayerProfile:PlayerProfile;
 		private var mBlocker:Image;
+		private var mStartArrow:Function;
+		private var mTriggerNotification:Boolean;
 		  
 		public function ShopRenderers() 
 		{
@@ -163,6 +165,13 @@ package game.ui.com
 			addChild(mBlocker);
 		}
 		
+		public function SetAsNotificationTrigger(notificationCallback:Function):void
+		{
+			mTriggerNotification = true;
+			mStartArrow = notificationCallback;
+		}
+		
+		
 		private function HandlePurchase(e:Event):void 
 		{
 			mClickCallback(pType, mDefinitionClone.pCost);
@@ -183,6 +192,13 @@ package game.ui.com
 			var enabled:Boolean = !(mPlayerProfile.pTotalLeaks >= mDefinitionClone.pCost);
 			
 			mBlocker.visible = enabled;
+			
+			if (mTriggerNotification && !enabled)
+			{
+				var global:Point = localToGlobal(new Point(mBgButton.x, mBgButton.y));
+				mStartArrow(global.x - 100, global.y+25, global.x-50, global.y+25);
+				mTriggerNotification = false;
+			}
 			
 		}
 	}

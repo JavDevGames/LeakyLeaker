@@ -42,10 +42,13 @@ package game.ui.com
 		
 		private var mReleaseIdx:int;
 		private var mReportCallback:Function;
+		private var mTriggerNotification:Boolean;
+		private var mStartArrowCallback:Function;
+		private var mEndArrowCallback:Function;
 		
 		public function ReleaseReport() 
 		{
-			mCurReportMax = 1000;
+			mCurReportMax = 500;
 			mCurLeakVal = 0;
 			mReleaseIdx = 0;
 			Init();
@@ -83,13 +86,13 @@ package game.ui.com
 			mLeakBar.x = 121;
 			mLeakBar.y = 563;
 			addChild(mLeakBar);
+			
+			mTriggerNotification = false;
 		}
 		
 		private function ReleaseClicked(e:Event):void 
 		{
 			mReportCallback(-mCurReportMax);
-			
-			trace("cost: " + mCurReportMax);
 			
 			mCurReportMax = Math.round(Math.pow(mCurReportMax, 1.15));
 			mCurLeakVal = 0;
@@ -104,6 +107,8 @@ package game.ui.com
 			
 			mReleaseIdx++;
 			
+			mEndArrowCallback();
+			
 			GlobalData.GetInstance().pPopUpManager.AddPopUp(ReleasePopUp, { title:messageTitle, body:messageBody} );
 		}
 		
@@ -112,7 +117,19 @@ package game.ui.com
 			var curVal:Number = GlobalData.GetInstance().pPlayerProfile.pTotalLeaks;
 			
 			//disable/enable it
-			mReleaseButton.enabled = curVal >= mCurReportMax;
+			var enable:Boolean = curVal >= mCurReportMax;
+			mReleaseButton.enabled = enable;
+			
+			if (mTriggerNotification && enable)
+			{
+				mStartArrowCallback(mReleaseButton.x + mReleaseButton.width + 100,
+									mReleaseButton.y + 25,
+									mReleaseButton.x + mReleaseButton.width + 50,
+									mReleaseButton.y + 25);
+									
+				mTriggerNotification = false;
+			}
+			
 			
 			if (curVal != mCurLeakVal)
 			{
@@ -123,9 +140,12 @@ package game.ui.com
 			}
 		}
 		
-		public function RegisterReportCallback(reportCallback:Function):void 
+		public function RegisterCallbacks(reportCallback:Function, startArrowCallback:Function, endArrowCallback:Function):void
 		{
 			mReportCallback = reportCallback;
+			mStartArrowCallback = startArrowCallback;
+			mEndArrowCallback = endArrowCallback;
+			mTriggerNotification = true;
 		}
 		
 	}

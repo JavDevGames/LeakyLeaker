@@ -64,7 +64,7 @@ package game.ui.com
 		{
 			if (mDirty)
 			{
-				mLeaksText.text = int(mTotalLeaks) + " total bytes hacked";
+				mLeaksText.text = Math.round(mTotalLeaks) + " total bytes hacked";
 				mDirty = false;
 				
 				GlobalData.GetInstance().pPlayerProfile.pTotalLeaks = mTotalLeaks;

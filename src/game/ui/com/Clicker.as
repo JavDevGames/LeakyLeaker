@@ -20,6 +20,10 @@ package game.ui.com
 		
 		private var mClickFunc:Function;
 		
+		private var mStartArrow:Function;
+		private var mTriggerNotification:Boolean;
+		private var mEndArrow:Function;
+		
 		public function Clicker() 
 		{
 			InitAssets();
@@ -39,21 +43,32 @@ package game.ui.com
 			mButton.y = 188;
 			addChild(mButton);
 			mButton.addEventListener(Event.TRIGGERED, HandleTriggered);
+			
+			mTriggerNotification = true;
 		}
 		
-		public function RegisterClickCallback(func:Function):void
+		public function RegisterClickCallback(func:Function, startArrow:Function, endArrow:Function):void
 		{
 			mClickFunc = func;
+			mStartArrow = startArrow;
+			mEndArrow = endArrow;
+			
+			mStartArrow(mButton.x + 250, mButton.y + 250, mButton.x + 200, mButton.y + 200);
 		}
 		
 		private function HandleTriggered(e:Event):void 
 		{
-			trace("click");
 			var newLeaks:int = 1;
+			
+			if (mTriggerNotification)
+			{
+				mEndArrow();
+				mTriggerNotification = false;
+			}
+			
 			
 			mClickFunc(newLeaks);
 		}
-		
 	}
 
 }

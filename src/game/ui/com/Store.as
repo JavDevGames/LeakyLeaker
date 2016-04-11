@@ -9,6 +9,9 @@ package game.ui.com
 	{
 		private var mList:Vector.<ShopRenderers>;
 		private var mPurchaseCallback:Function;
+		private var mEndArrowCallback:Function;
+		private var mStartArrowCallback:Function;
+		private var mTriggerNotification:Boolean;
 		
 		public function Store() 
 		{
@@ -37,15 +40,23 @@ package game.ui.com
 				
 				addChild(mList[i]);
 			}
+			
+			mTriggerNotification = false;
 		}
 		
-		public function RegisterPurchaseCallback(func:Function):void
+		public function RegisterCallbacks(func:Function, startArrowCallback:Function, endArrowCallback:Function):void
 		{
 			mPurchaseCallback = func;
+			mStartArrowCallback = startArrowCallback;
+			mEndArrowCallback = endArrowCallback;
+			
+			mList[0].SetAsNotificationTrigger(mStartArrowCallback);
 		}
 		
 		private function PurchaseClick(type:int, cost:Number):void 
 		{
+			mEndArrowCallback();
+			
 			mPurchaseCallback(type, cost);
 		}
 		
